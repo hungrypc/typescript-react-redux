@@ -13,3 +13,6 @@ Pros and cons of ts with react/redux.
 - Tons of generics flying around
 - Tons of imports, as just about everything (action creator, action, reducer, store, component) need to be aware of different types
 - Redux inherently functional in nature, tough integration with TS classes
+
+## Connecting a Component to Redux
+We want to avoid `export default` with typescript and use named exports instead because it works well with code refactoring. 
