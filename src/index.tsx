@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
 // import App from './App'
-import TodoApp from './components/TodoApp'
+import { TodoApp } from './components/TodoApp'
 import { reducers } from './reducers'
 
 const store = createStore(

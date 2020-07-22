@@ -9,9 +9,23 @@ interface AppProps {
 }
 
 const _TodoApp: FunctionComponent<AppProps> = (props: AppProps): JSX.Element => {
+
+  const onButtonClick = (): void => {
+    props.fetchTodos()
+  }
+
+  const renderList = (): JSX.Element[] => {
+    return props.todos.map((todo: Todo) => {
+      return <div key={todo.id}>{todo.title}</div>
+    })
+  }
+
   return (
     <div>
-      Hey
+      <button onClick={onButtonClick}>
+        Fetch
+      </button>
+      {renderList()}
     </div>
   )
 }
