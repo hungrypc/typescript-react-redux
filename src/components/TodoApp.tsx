@@ -1,11 +1,12 @@
 import React, { FunctionComponent } from 'react'
 import { connect } from 'react-redux'
-import { Todo, fetchTodos } from '../actions'
+import { Todo, fetchTodos, deleteTodo } from '../actions'
 import { StoreState } from '../reducers'
 
 interface AppProps {
   todos: Todo[]
-  fetchTodos(): any
+  fetchTodos: Function
+  deleteTodo: typeof deleteTodo
 }
 
 const _TodoApp: FunctionComponent<AppProps> = (props: AppProps): JSX.Element => {
@@ -14,9 +15,17 @@ const _TodoApp: FunctionComponent<AppProps> = (props: AppProps): JSX.Element => 
     props.fetchTodos()
   }
 
+  const onTodoClick = (id: number): void => {
+    props.deleteTodo(id)
+  }
+
   const renderList = (): JSX.Element[] => {
     return props.todos.map((todo: Todo) => {
-      return <div key={todo.id}>{todo.title}</div>
+      return (
+        <div key={todo.id} onClick={() => onTodoClick(todo.id)}>
+          {todo.title}
+        </div>
+      )
     })
   }
 
@@ -38,5 +47,5 @@ const mapStateToProps = (state: StoreState): { todos: Todo[] } => {
 
 export const TodoApp =  connect(
   mapStateToProps, 
-  { fetchTodos }
+  { fetchTodos, deleteTodo }
 )(_TodoApp)
