@@ -48,7 +48,7 @@ const _TodoApp: FunctionComponent<AppProps> = (props: AppProps): JSX.Element => 
   }
 
   useEffect(() => {
-    if (prevTodos !== todos) {
+    if (prevTodos !== todos && fetching) {
       console.log('hit')
       setFetching(false)
     }
